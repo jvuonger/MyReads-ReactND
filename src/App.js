@@ -29,38 +29,9 @@ class BooksApp extends React.Component {
   render() {
     const { books } = this.state
 
-    let currentlyReadingBooks = (books
-      .filter((book) => book.shelf === "currentlyReading")
-      .map((book) => ({
-        id: book.id,
-        bookCoverUrl: book.imageLinks.thumbnail,
-        title: book.title,
-        authors: book.authors.join(", "),
-        shelf: book.shelf
-      }))
-    )
-
-    let wantToReadBooks = (books
-      .filter((book) => book.shelf === "wantToRead")
-      .map((book) => ({
-        id: book.id,
-        bookCoverUrl: book.imageLinks.thumbnail,
-        title: book.title,
-        authors: book.authors.join(", "),
-        shelf: book.shelf
-      }))
-    )
-
-    let readBooks = (books
-      .filter((book) => book.shelf === "read")
-      .map((book) => ({
-        id: book.id,
-        bookCoverUrl: book.imageLinks.thumbnail,
-        title: book.title,
-        authors: book.authors.join(", "),
-        shelf: book.shelf
-      }))
-    )
+    let currentlyReadingBooks = books.filter(book => book.shelf === "currentlyReading")
+    let wantToReadBooks = books.filter((book) => book.shelf === "wantToRead")
+    let readBooks = books.filter((book) => book.shelf === "read")
 
     return (
       <div className="app">

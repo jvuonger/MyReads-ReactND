@@ -12,9 +12,9 @@ class BookShelf extends Component {
                         { books.map( book => (
                           <BookShelfItem
                             key={book.id}
-                            bookCoverUrl={book.bookCoverUrl}
+                            bookCoverUrl={book.imageLinks.thumbnail}
                             title={book.title} 
-                            authors={book.authors}
+                            authors={book.authors.join(", ")}
                             shelf={book.shelf}
                             handleBookShelfChange={newShelf => handleBookShelfChange(book, newShelf)} />
                         ))}
