@@ -14,7 +14,8 @@ class BookShelf extends Component {
                             key={index}
                             bookCoverUrl={book.bookCoverUrl}
                             title={book.title} 
-                            authors={book.authors} />
+                            authors={book.authors}
+                            shelf={book.shelf} />
                         ))}
                     </ol>
                 </div>

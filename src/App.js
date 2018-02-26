@@ -23,7 +23,8 @@ class BooksApp extends React.Component {
       .map((book) => ({
         bookCoverUrl: book.imageLinks.thumbnail,
         title: book.title,
-        authors: book.authors.join(", ")
+        authors: book.authors.join(", "),
+        shelf: book.shelf
       }))
     )
 
@@ -32,7 +33,8 @@ class BooksApp extends React.Component {
       .map((book) => ({
         bookCoverUrl: book.imageLinks.thumbnail,
         title: book.title,
-        authors: book.authors.join(", ")
+        authors: book.authors.join(", "),
+        shelf: book.shelf
       }))
     )
 
@@ -41,7 +43,8 @@ class BooksApp extends React.Component {
       .map((book) => ({
         bookCoverUrl: book.imageLinks.thumbnail,
         title: book.title,
-        authors: book.authors.join(", ")
+        authors: book.authors.join(", "),
+        shelf: book.shelf
       }))
     )
 
