@@ -9,6 +9,14 @@ class BooksApp extends React.Component {
     showSearchPage: false
   }
 
+  changeBookItemShelf(book, newShelf) {
+    let books = this.state.books
+    let bookIndex = books.findIndex(prevBook => prevBook.id === book.id)
+    books[bookIndex].shelf = newShelf
+
+    this.setState({books: books})
+  }
+
   componentDidMount() {
     BooksAPI.getAll().then((books) =>
       this.setState({books})
@@ -21,6 +29,7 @@ class BooksApp extends React.Component {
     let currentlyReadingBooks = (books
       .filter((book) => book.shelf === "currentlyReading")
       .map((book) => ({
+        id: book.id,
         bookCoverUrl: book.imageLinks.thumbnail,
         title: book.title,
         authors: book.authors.join(", "),
@@ -31,6 +40,7 @@ class BooksApp extends React.Component {
     let wantToReadBooks = (books
       .filter((book) => book.shelf === "wantToRead")
       .map((book) => ({
+        id: book.id,
         bookCoverUrl: book.imageLinks.thumbnail,
         title: book.title,
         authors: book.authors.join(", "),
@@ -41,6 +51,7 @@ class BooksApp extends React.Component {
     let readBooks = (books
       .filter((book) => book.shelf === "read")
       .map((book) => ({
+        id: book.id,
         bookCoverUrl: book.imageLinks.thumbnail,
         title: book.title,
         authors: book.authors.join(", "),
@@ -81,14 +92,17 @@ class BooksApp extends React.Component {
                 <BookShelf
                   title="Currently Reading"
                   books={currentlyReadingBooks}
+                  handleBookShelfChange={(book, newShelf) => this.changeBookItemShelf(book, newShelf)}
                 />
                 <BookShelf
                   title="Want to Read"
                   books={wantToReadBooks}
+                  handleBookShelfChange={(book, newShelf) => this.changeBookItemShelf(book, newShelf)}
                 />
                 <BookShelf
                   title="Read"
                   books={readBooks}
+                  handleBookShelfChange={(book, newShelf) => this.changeBookItemShelf(book, newShelf)}
                 />
               </div>
             </div>
