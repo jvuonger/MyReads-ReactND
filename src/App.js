@@ -14,7 +14,10 @@ class BooksApp extends React.Component {
     let bookIndex = books.findIndex(prevBook => prevBook.id === book.id)
     books[bookIndex].shelf = newShelf
 
-    this.setState({books: books})
+    // TODO: Look into this: update returns {currentlyReading: Array(1), wantToRead: Array(3), read: Array(3)}
+    BooksAPI.update(book, newShelf).then(() =>
+      this.setState({books: books})
+    )
   }
 
   componentDidMount() {
