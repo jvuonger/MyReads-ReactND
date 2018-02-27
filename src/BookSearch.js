@@ -11,22 +11,26 @@ class BookSearch extends Component {
     searchBooks(query) {
         const {booksOnShelf} = this.props
 
-        BooksAPI.search(query).then(books => {
-            if (typeof(books) === 'undefined' || books.error === "empty query") 
-                return
+        if(query === '') {
+            this.setState({books:[]})
+        } else {
+            BooksAPI.search(query).then(books => {
+                if (typeof(books) === 'undefined' || books.error === "empty query") 
+                    return
 
-            // Map to the correct shelf
-            books.map(book => {
-                let bookIndex = booksOnShelf.findIndex(bookOnShelf => bookOnShelf.id === book.id)
-                if(bookIndex > -1) {
-                    book.shelf = booksOnShelf[bookIndex].shelf
-                } else {
-                    book.shelf = 'none'
-                }
-                return book
+                // Map to the correct shelf
+                books.map(book => {
+                    let bookIndex = booksOnShelf.findIndex(bookOnShelf => bookOnShelf.id === book.id)
+                    if(bookIndex > -1) {
+                        book.shelf = booksOnShelf[bookIndex].shelf
+                    } else {
+                        book.shelf = 'none'
+                    }
+                    return book
+                })
+                this.setState({books})
             })
-            this.setState({books})
-        })
+        }
     }
 
     render() {
