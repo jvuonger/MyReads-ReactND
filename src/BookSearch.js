@@ -8,15 +8,19 @@ class BookSearch extends Component {
         books : []
     }
 
+    resetSearchResults() {
+        this.setState({books:[]})
+    }
+
     searchBooks(query) {
         const {booksOnShelf} = this.props
 
         if(query === '') {
-            this.setState({books:[]})
+            this.resetSearchResults()
         } else {
             BooksAPI.search(query).then(books => {
                 if (typeof(books) === 'undefined' || books.error === "empty query") 
-                    return
+                    return this.resetSearchResults()
 
                 // Map to the correct shelf
                 books.map(book => {
