@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import BookShelfItem from './BookShelfItem.js'
+import BookItem from './BookItem.js'
 
 class BookShelf extends Component {
     render() {
@@ -10,12 +10,9 @@ class BookShelf extends Component {
                 <div className="bookshelf-books">
                     <ol className="books-grid">
                         { books.map( book => (
-                          <BookShelfItem
+                          <BookItem
                             key={book.id}
-                            bookCoverUrl={book.imageLinks.thumbnail}
-                            title={book.title} 
-                            authors={book.authors.join(", ")}
-                            shelf={book.shelf}
+                            book={book}
                             handleBookShelfChange={newShelf => handleBookShelfChange(book, newShelf)} />
                         ))}
                     </ol>
