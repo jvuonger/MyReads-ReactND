@@ -4,6 +4,7 @@ import BookShelfChanger from './BookShelfChanger'
 class BookItem extends Component {
     render() {
         const { book, handleBookShelfChange } = this.props
+        let authors = (typeof book.authors !== 'undefined') ? book.authors.join(", ") : "";
         return (
             <li>
                 <div className="book">
@@ -12,7 +13,7 @@ class BookItem extends Component {
                         <BookShelfChanger shelf={book.shelf} handleBookShelfChange={newShelf => handleBookShelfChange(newShelf)} />
                     </div>
                     <div className="book-title">{ book.title }</div>
-                    <div className="book-authors">{ book.authors.join(", ") }</div>
+                    <div className="book-authors">{ authors }</div>
                 </div>
             </li>
         )

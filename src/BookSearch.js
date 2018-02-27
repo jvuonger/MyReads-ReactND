@@ -12,6 +12,9 @@ class BookSearch extends Component {
         const {booksOnShelf} = this.props
 
         BooksAPI.search(query).then(books => {
+            if (typeof(books) === 'undefined' || books.error === "empty query") 
+                return
+
             // Map to the correct shelf
             books.map(book => {
                 let bookIndex = booksOnShelf.findIndex(bookOnShelf => bookOnShelf.id === book.id)
