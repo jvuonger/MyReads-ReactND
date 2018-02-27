@@ -42,7 +42,6 @@ class BookSearch extends Component {
         return (
             <div className="search-books">
                 <BookSearchBar 
-                    handleCloseSearch={handleCloseSearch} 
                     handleSearchQuery={(query) => this.searchBooks(query)} />
                 <BookSearchResults 
                     books={this.state.books} 
